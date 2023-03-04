@@ -49,7 +49,7 @@ async function createNote(event) {
     description: form.get("description"),
     image: image.name,
   };
-  if (!!data.image) await Storage.put(data.name, image);
+  if (data.image) await Storage.put(data.name, image);
   await API.graphql({
     query: createNoteMutation,
     variables: { input: data },
@@ -67,7 +67,6 @@ async function deleteNote({ id, name }) {
     variables: { input: { id } },
   });
 }
-
   return (
     <View className="App">
       <Heading level={1}>My Notes App</Heading>
